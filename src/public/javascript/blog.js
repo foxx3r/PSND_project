@@ -1,0 +1,1 @@
+// codigo JavaScript global aqui
