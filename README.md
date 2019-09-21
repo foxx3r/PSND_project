@@ -103,4 +103,4 @@ Instale o Node.js no windows: https://nodejs.org
 
 As paginas de demonstracao estao disponiveis em http://127.0.0.1:8080/ e http://127.0.0.1/api/1.0.0/
 
-**Nota: se quiser por algum motivo trocar o host e a porta, no arquivo do src/.env**
+**Nota: se quiser por algum motivo trocar o host e a porta, no arquivo src/.env voce pode altera-los**
