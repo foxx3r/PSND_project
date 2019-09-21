@@ -28,7 +28,7 @@ para rodar o script do projeto PSND, voce precisa dos seguintes requisitos:
 
 2 - Execute o seguinte comando:
 
-`$ bew install nodejs`
+`$ brew install nodejs`
 
 
 **Arch Linux e derivados:**
@@ -80,7 +80,7 @@ Instale o Node.js no windows: https://nodejs.org
 
 2 - Digite:
 
-`$ git clone https://github.com/PSND_project`
+`$ git clone https://github.com/foxx3r/PSND_project`
 
 
 # Instalando dependencias necessarias
