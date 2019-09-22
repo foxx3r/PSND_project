@@ -91,7 +91,7 @@ Instale o Node.js no windows: https://nodejs.org
 
 2 - Instale as dependencias necessarias com:
 
-`$ yarn add express dotenv express-handlebars serve-favicon mongoose cookie-parser express-session body-parser passport-local`
+`$ yarn install`
 
 
 # Executando o projeto
