@@ -2,6 +2,10 @@ const express = require("express")
 const app = express()
 const bodyParser = require("body-parser")
 const helmet = require("helmet")
+const cookieSession = require("cookie-session")
+const session = require("express-session")
+const flash = require("connect-flash")
+require("dotenv").config()
 
 // config
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -10,6 +14,20 @@ app.use(bodyParser.json())
 app.use(express.static("public"))
 
 app.use(helmet())
+
+app.set("trust proxy", 1)
+app.use(session({
+  secret: process.env.COOKIE_SECRET_FOR_API,
+  saveUninitialized: true,
+  resave: true,
+  cookie: { secure: false }
+}))
+
+app.use(cookieSession({
+  name: "session",
+  keys: ["key1", "key2"]
+}))
+app.use(flash())
 
 // routes
 app.get("/", (req, res, next) => {
