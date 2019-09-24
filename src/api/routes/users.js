@@ -22,14 +22,14 @@ app.use(helmet())
 
 app.set("trust proxy", 1)
 app.use(session({
-  secret: process.env.COOKIE_SECRET,
-  saveUninitialized: true,
-  resave: true,
-  cookie: { secure: false }
+  secret: process.env.SESSION,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: true }
 }))
 
 app.use(cookieSession({
-  name: "session",
+  name: "cookie_session",
   keys: ["key1", "key2"]
 }))
 

@@ -5,7 +5,6 @@ const helmet = require("helmet")
 const cookieSession = require("cookie-session")
 const session = require("express-session")
 const flash = require("connect-flash")
-require("dotenv").config()
 
 // config
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -17,7 +16,7 @@ app.use(helmet())
 
 app.set("trust proxy", 1)
 app.use(session({
-  secret: process.env.COOKIE_SECRET_FOR_API,
+  secret: "senha da sessao aqui",
   saveUninitialized: true,
   resave: true,
   cookie: { secure: false }
