@@ -5,6 +5,7 @@ const helmet = require("helmet")
 const cookieSession = require("cookie-session")
 const session = require("express-session")
 const flash = require("connect-flash")
+const db = require("../model/schemas")
 
 // config
 app.use(bodyParser.urlencoded({ extended: false }))

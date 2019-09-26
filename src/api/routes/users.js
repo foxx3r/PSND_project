@@ -6,6 +6,8 @@ const handlebars = require("express-handlebars")
 const bodyParser = require("body-parser")
 const flash = require("connect-flash")
 const helmet = require("helmet")
+const db = require("../model/schemas")
+const bcrypt = require("bcryptjs")
 require("dotenv").config()
 
 // config
@@ -25,19 +27,49 @@ app.use(session({
   secret: process.env.SESSION,
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: true }
+  cookie: { secure: false }
 }))
 
-app.use(cookieSession({
+  /*app.use(cookieSession({
   name: "cookie_session",
   keys: ["key1", "key2"]
-}))
+}))*/
 
 app.use(flash())
+
+const salt = bcrypt.genSaltSync(10)
 
 // routes
 app.get("/", (req, res, next) => {
   res.render("pages/home")
+})
+
+app.get("/success", (req, res, next) => {
+  res.render("pages/success")
+})
+
+app.get("/register", (req, res, next) => {
+  res.render("pages/register")
+})
+
+app.post("/register", async (req, res, next) => {
+  await new db.clienteSchema({
+    nome: req.body.nome,
+    nascimento: req.body.nascimento,
+    DDD: req.body.DDD,
+    telefone: req.body.telefone,
+    CEP: req.body.CEP,
+    CC: req.body.CC,
+    CPF: req.body.CPF,
+    email: req.body.email,
+    senha: bcrypt.hashSync(req.body.senha)
+  }).save()
+    .then( () => {
+      res.redirect("/success")
+    }).catch( (error) => {
+      console.log("Erro ao cadastrar usuario: " + error)
+      res.redirect("/register")
+    })
 })
 
 module.exports = app

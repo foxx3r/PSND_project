@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
+require("dotenv").config()
 
-mongoose.connect("mongodb://localhost/test", {
+mongoose.connect(`mongodb://${process.env.MONGO_HOST}/test`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then( () => {
