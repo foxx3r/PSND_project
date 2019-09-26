@@ -12,7 +12,7 @@ para rodar o script do projeto PSND, voce precisa dos seguintes requisitos:
 
 5 - Clone este repositorio
 
-5 - As dependencias necessarias
+6 - As dependencias necessarias
 
 
 # Instalacao
