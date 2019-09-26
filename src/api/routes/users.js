@@ -44,7 +44,7 @@ app.get("/", (req, res, next) => {
   res.render("pages/home")
 })
 
-app.get("/success", (req, res, next) => {
+app.post("/success", (req, res, next) => {
   res.render("pages/success")
 })
 
@@ -65,7 +65,7 @@ app.post("/register", async (req, res, next) => {
     senha: bcrypt.hashSync(req.body.senha)
   }).save()
     .then( () => {
-      res.redirect("/success")
+      res.redirect(307, "/success")
     }).catch( (error) => {
       console.log("Erro ao cadastrar usuario: " + error)
       res.redirect("/register")
