@@ -1,0 +1,14 @@
+{{#if error_message}}
+  <div class="container">
+    <div class="alert alert-danger">
+      <p class="text-center"><strong>Erro!</strong> {{error_message}}</p>
+  </div>
+{{/if}}
+
+{{#if success_message}}
+  <div class="container">
+    <div class="alert alert-success">
+      <p class="text-center"><strong>Sucesso!</strong> {{success_message}}</p>
+    </div>
+  </div>
+{{/if}}

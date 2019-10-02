@@ -14,6 +14,7 @@ para rodar o script do projeto PSND, voce precisa dos seguintes requisitos:
 
 6 - As dependencias necessarias
 
+7 - O MongoDB instalado
 
 # Instalacao
 
@@ -94,13 +95,23 @@ Instale o Node.js no windows: https://nodejs.org
 `$ yarn install`
 
 
+# Instalacao do MongoDB
+
+1 - Veja o tutorial de instalacao do MongoDB no site oficial para seu respectivo sistema operacional https://www.mongodb.com/download-center/community
+
+2 - Execute o comando:
+
+`$ mongod`
+
+
 # Executando o projeto
 
-`$ node src/server.js`
+1 - Entre no diretorio src:
 
+`$ cd src`
 
-# Modos de uso:
+2 - Execute o servidor:
 
-As paginas de demonstracao estao disponiveis em http://127.0.0.1:8080/ e http://127.0.0.1/api/1.0.0/
+`$ node server.js`
 
 **Nota: se quiser por algum motivo trocar o host e a porta, no arquivo src/.env voce pode altera-los**

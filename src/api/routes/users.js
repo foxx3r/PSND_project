@@ -1,13 +1,14 @@
 const express = require("express")
 const app = express()
-const cookieSession = require("cookie-session")
-const session = require("express-session")
 const handlebars = require("express-handlebars")
 const bodyParser = require("body-parser")
 const flash = require("connect-flash")
 const helmet = require("helmet")
 const db = require("../model/schemas")
+const session = require("express-session")
 const bcrypt = require("bcryptjs")
+const passport = require("passport")
+require("../auth/auth")(passport)
 require("dotenv").config()
 
 // config
@@ -21,21 +22,26 @@ app.use(express.static("public"))
 app.use(express.static("views"))
 
 app.use(helmet())
+app.use(require("morgan")("dev"))
 
-app.set("trust proxy", 1)
 app.use(session({
-  secret: process.env.SESSION,
+  secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: { secure: false }
 }))
-
-  /*app.use(cookieSession({
-  name: "cookie_session",
-  keys: ["key1", "key2"]
-}))*/
-
 app.use(flash())
+
+app.use( (req, res, next) => {
+  res.locals.success_message = req.flash("success_message")
+  res.locals.error_message = req.flash("error_message")
+  next()
+})
+
+app.set("trust proxy", 1)
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 const salt = bcrypt.genSaltSync(10)
 
@@ -50,6 +56,18 @@ app.post("/success", (req, res, next) => {
 
 app.get("/register", (req, res, next) => {
   res.render("pages/register")
+})
+
+app.get("/login", (req, res, next) => {
+  res.render("pages/login")
+})
+
+app.post("/login", (req, res, next) => {
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true
+  })
 })
 
 app.post("/register", async (req, res, next) => {
@@ -70,6 +88,11 @@ app.post("/register", async (req, res, next) => {
       console.log("Erro ao cadastrar usuario: " + error)
       res.redirect("/register")
     })
+})
+
+app.get("/test", (req, res, next) => {
+  req.flash("success_message", "Usuario criado com sucesso.")
+  res.redirect("/register")
 })
 
 module.exports = app
