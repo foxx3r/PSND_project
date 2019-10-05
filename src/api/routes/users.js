@@ -12,8 +12,11 @@ require("../auth/auth")(passport)
 require("dotenv").config()
 
 // config
-app.engine("handlebars", handlebars({ defaultLayout: "main" }))
-app.set("view engine", "handlebars")
+app.engine("hbs", handlebars({
+    defaultLayout: "main",
+    extname: ".hbs"
+}))
+app.set("view engine", "hbs")
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -48,10 +51,6 @@ const salt = bcrypt.genSaltSync(10)
 // routes
 app.get("/", (req, res, next) => {
   res.render("pages/home")
-})
-
-app.post("/success", (req, res, next) => {
-  res.render("pages/success")
 })
 
 app.get("/register", (req, res, next) => {
