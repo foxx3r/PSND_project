@@ -1,11 +1,9 @@
-<div class="container">
-    {{#if posts}}
-        <div class="card">
-        {{#each posts}}
-            <div class="card-body">{{post}}</div>
-        {{/each}}
-        </div>
-    {{else}}
-        <h1>Nao existem posts ainda.</h1>
-    {{/if}}
-</div>
+{{#if posts}}
+    <div class="card">
+    {{#each posts}}
+        <div class="card-body">{{post}}</div>
+    {{/each}}
+    </div>
+{{else}}
+    <h1>Nao existem posts ainda.</h1>
+{{/if}}
